@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Inject] private Diamond.Factory _factory;
 
-    // Update is called once per frame
-    void Update()
+    public void DiamondGenerate()
     {
-        
+        Debug.Log("Circle Generated");
+
+        var diamond = _factory.Create();
+
+        diamond.transform.localPosition =
+            new Vector3(Random.Range(-8f, 8f), Random.Range(-5f, 5f), Quaternion.identity.z);
     }
 }
